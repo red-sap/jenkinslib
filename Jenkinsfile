@@ -48,8 +48,8 @@ pipeline{
 					script{
 						println("应用打包")
 						anthome =tool "local_ant"
-						println("${mvnhome}")
-						sh "${mvnhome}/bin/ant --version"
+						println("${anthome}")
+						sh "${anthome}/bin/ant --version"
 					}
 				}
 			}
