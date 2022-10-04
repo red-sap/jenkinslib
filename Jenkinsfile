@@ -36,7 +36,7 @@ pipeline{
 						mvnhome =tool "m2"
 						println("${mvnhome}")
 						sh "${mvnhome}/bin/mvn --version"
-                        tools.PrintMes("this is my lib")
+                        tools.PrintMes("this is my lib","green")
 					}
 
 				}
