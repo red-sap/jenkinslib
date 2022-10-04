@@ -49,7 +49,8 @@ pipeline{
 						println("应用打包")
 						anthome =tool "local_ant"
 						println("${anthome}")
-						sh "${anthome}/bin/ant --version"
+						sh "${anthome}/bin/ant -version"
+						println("a")
 					}
 				}
 			}
