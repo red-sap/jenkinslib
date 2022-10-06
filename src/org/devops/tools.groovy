@@ -18,8 +18,15 @@ def PrintMes(value,color){
 
 def exec(tool_package,command){
     home =tool "local_${tool_package}"
+     
     try{
-        sh "${home}/bin/${tool_package} ${command}"}
+        if ("${tool_package}") == "maven"{
+                sh "${home}/bin/mvn ${command}"
+            }
+        else{
+            sh "${home}/bin/${tool_package} ${command}"
+            }
+        }
     catch(e){
         println(e)
     }
