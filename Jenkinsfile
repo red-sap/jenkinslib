@@ -47,10 +47,11 @@ pipeline{
 				timeout(time:20,unit:"MINUTES"){ //步骤超时时间
 					script{
 						println("应用打包")
-						anthome =tool "local_ant"
-						println("${anthome}")
-						sh "${anthome}/bin/ant -version"
-						println("a")
+						// anthome =tool "local_ant"
+						// println("${anthome}")
+						// sh "${anthome}/bin/ant -version"
+						tools.exec(${env.tool_package},${env.command})
+
 					}
 				}
 			}

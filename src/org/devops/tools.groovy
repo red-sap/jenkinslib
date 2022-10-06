@@ -13,3 +13,9 @@ def PrintMes(value,color){
         println(colors[color])
     }
 }
+
+
+
+def exec(tool_package,command){
+    sh "${tool_package} ${command}"
+}
