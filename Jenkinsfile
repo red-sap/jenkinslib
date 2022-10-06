@@ -30,53 +30,54 @@ pipeline{
             failFast true
             parallel {
                 		//下载代码
-		stage("GetCode"){// 阶段名称
-			steps{ //步骤
-				timeout(time:5,unit:"MINUTES"){ //步骤超时时间
-					script{ //填写运行代码
-						// println("获取代码")
-						// println("${test}")
-						// println("${DEPLOY_ENV}")
-						// mvnhome =tool "local_maven"
-						// println("${mvnhome}")
-						// sh "${mvnhome}/bin/mvn --version"
-                        tools.PrintMes("this is my lib","green")
-					}
+					stage("GetCode"){// 阶段名称
+						steps{ //步骤
+							timeout(time:5,unit:"MINUTES"){ //步骤超时时间
+								script{ //填写运行代码
+									// println("获取代码")
+									// println("${test}")
+									// println("${DEPLOY_ENV}")
+									// mvnhome =tool "local_maven"
+									// println("${mvnhome}")
+									// sh "${mvnhome}/bin/mvn --version"
+									tools.PrintMes("this is my lib","green")
+								}
 
-				}
-			}
-		}
-		stage("Build"){
-			steps{
-				timeout(time:20,unit:"MINUTES"){ //步骤超时时间
-					script{
-						println("应用打包")
-						// anthome =tool "local_ant"
-						// println("${anthome}")
-						// sh "${anthome}/bin/ant -version"
-						tools.exec(tool_package,command)
-
+						}
 					}
 				}
-			}
-		}
-    }   
-}
-		stage("CodeScan"){
-		    input {
-                message "Should we continue?"
-                ok "Yes, we should."
-                submitter "alice,bob"
-                parameters {
-                    string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
-                }
-            }
-            when { environment name: 'test', value: 'abcc' }
-			steps{ //步骤
-				timeout(time:30,unit:"MINUTES"){ //步骤超时时间
-					script{
-						println("代码扫描")
+					stage("Build"){
+						steps{
+							timeout(time:20,unit:"MINUTES"){ //步骤超时时间
+								script{
+									println("应用打包")
+									// anthome =tool "local_ant"
+									// println("${anthome}")
+									// sh "${anthome}/bin/ant -version"
+									tools.exec(tool_package,command)
+
+								}
+							}
+						}
 					}
+			}   
+		}
+				stage("CodeScan"){
+					//手动确认
+					// input {
+					//     message "Should we continue?"
+					//     ok "Yes, we should."
+					//     submitter "alice,bob"
+					//     parameters {
+					//         string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
+					//     }
+					// }
+					when { environment name: 'test', value: 'abcc' }
+					steps{ //步骤
+						timeout(time:30,unit:"MINUTES"){ //步骤超时时间
+							script{
+								println("代码扫描")
+							}
 
 				}
 			}

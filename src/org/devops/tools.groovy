@@ -18,5 +18,10 @@ def PrintMes(value,color){
 
 def exec(tool_package,command){
     home =tool "local_${tool_package}"
-    sh "${home}/bin/${tool_package} ${command}"
+    try{
+        sh "${home}/bin/${tool_package} ${command}"}
+    catch(e){
+        println(e)
+    }
+    
 }
