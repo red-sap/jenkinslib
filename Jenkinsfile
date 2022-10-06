@@ -2,6 +2,10 @@
 def tools = new org.devops.tools()
 
 String workspace = "/opt/jenkins/workspace"
+
+
+String command = "${env.command}"
+String tool_package = "${env.tool_package}"
 //pipline
 pipeline{
 // 	agent {node { label "master"
@@ -30,12 +34,12 @@ pipeline{
 			steps{ //步骤
 				timeout(time:5,unit:"MINUTES"){ //步骤超时时间
 					script{ //填写运行代码
-						println("获取代码")
-						println("${test}")
-						println("${DEPLOY_ENV}")
-						mvnhome =tool "local_maven"
-						println("${mvnhome}")
-						sh "${mvnhome}/bin/mvn --version"
+						// println("获取代码")
+						// println("${test}")
+						// println("${DEPLOY_ENV}")
+						// mvnhome =tool "local_maven"
+						// println("${mvnhome}")
+						// sh "${mvnhome}/bin/mvn --version"
                         tools.PrintMes("this is my lib","green")
 					}
 
@@ -50,7 +54,7 @@ pipeline{
 						// anthome =tool "local_ant"
 						// println("${anthome}")
 						// sh "${anthome}/bin/ant -version"
-						tools.exec(${env.tool_package},${env.command})
+						tools.exec(tool_package,command)
 
 					}
 				}
