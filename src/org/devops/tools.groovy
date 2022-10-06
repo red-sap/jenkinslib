@@ -20,7 +20,7 @@ def exec(tool_package,command){
     home =tool "local_${tool_package}"
      
     try{
-        if ("${tool_package}") == "maven"{
+        if ("${tool_package}" == "maven"){
                 sh "${home}/bin/mvn ${command}"
             }
         else{
