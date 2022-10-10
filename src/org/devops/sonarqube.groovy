@@ -4,9 +4,10 @@ def SonarScan(projectName,projectDescription,projectPath){
     def sonarServer = "http://10.1.3.2:8900/"
     def sonarDate = sh returnStdout: true, script: 'date +%Y%m%d%H%M%S'
     sonarDate = sonarDate - "\n"
+    sonarpath = "/var/jenkins_home/extools/sonar-scanner-4.7.0.2747-linux/bin/"
 
     sh  """
-        sonar-scanner -Dsonar.host.url="${sonarServer}"\
+        ${sonarpath}sonar-scanner -Dsonar.host.url="${sonarServer}"\
         -Dsonar.projectKey=${projectName} \
         -Dsonar.projectName=${projectName} \
         -Dsonar.projectVersion=${sonarDate} \
